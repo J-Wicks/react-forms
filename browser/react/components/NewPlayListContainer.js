@@ -2,7 +2,7 @@ import React from 'react';
 import NewPlaylist from './NewPlaylist';
 import Songs from'./Songs';
 import axios from 'axios';
-
+import { hashHistory } from 'react-router'
 
 class NewPlayListContainer extends React.Component  {
 	constructor(props){
@@ -21,13 +21,6 @@ class NewPlayListContainer extends React.Component  {
     event.preventDefault()
 
     this.props.addPlayList(this.state.inputValue)
-    // axios.post('/api/playlists',  {
-    //  name: this.state.inputValue
-    // })
-    //   .then(res => res.data)
-    //   .then(result => {
-
-    // });
 
     this.setState({inputValue: ''})
 

@@ -11,7 +11,7 @@ function PlayLists(props){
           {
             playlists.map(playlist => (
               <li className="playlist-item menu-item" key={playlist.id}>
-                <Link to="">{playlist.name}</Link>
+                <Link to={`/playlists/${playlist.id}`}>{playlist.name}</Link>
               </li>
             )
           )}

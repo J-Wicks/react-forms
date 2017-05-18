@@ -8,7 +8,7 @@ import Albums from '../components/Albums.js';
 import Album from '../components/Album';
 import Sidebar from '../components/Sidebar';
 import Player from '../components/Player';
-
+import { hashHistory } from 'react-router';
 import { convertAlbum, convertAlbums, convertSong, skip } from '../utils';
 
 export default class AppContainer extends Component {
@@ -23,7 +23,8 @@ export default class AppContainer extends Component {
     this.prev = this.prev.bind(this);
     this.selectAlbum = this.selectAlbum.bind(this);
     this.selectArtist = this.selectArtist.bind(this);
-    this.addPlayList = this.addPlayList.bind(this)
+    this.addPlayList = this.addPlayList.bind(this);
+    this.selectPlaylist = this.selectPlaylist.bind(this);
   }
 
   componentDidMount () {
@@ -107,6 +108,14 @@ export default class AppContainer extends Component {
       }));
   }
 
+  selectPlaylist (playlistId) {
+    axios.get(`/api/playlists/${playlistId}`)
+      .then(res => res.data)
+      .then(playlist => this.setState({
+        selectedPlaylist: playlist
+      }));
+  }
+
   selectArtist (artistId) {
     Promise
       .all([
@@ -135,6 +144,7 @@ export default class AppContainer extends Component {
       .then(result => {
       this.state.playlists.push(result)
         this.setState({ playlists: this.state.playlists })
+        hashHistory.push(`/playlists/${result.id}`);
 
     });
   }
@@ -146,6 +156,7 @@ export default class AppContainer extends Component {
       toggle: this.toggle,
       selectAlbum: this.selectAlbum,
       selectArtist: this.selectArtist,
+      selectPlaylist: this.selectPlaylist,
       addPlayList: this.addPlayList
     });
 

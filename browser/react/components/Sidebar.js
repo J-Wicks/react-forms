@@ -4,7 +4,8 @@ import PlayLists from './PlayLists';
 const Sidebar = (props) => {
 
   let list = props.playlists
-  console.log('I am the sidebar properties', props)
+ 
+ 
   return (
     <sidebar>
       <img src="juke.svg" className="logo" />
