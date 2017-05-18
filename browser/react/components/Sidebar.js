@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
-
+import PlayLists from './PlayLists';
 const Sidebar = (props) => {
 
+  let list = props.playlists
+  console.log('I am the sidebar properties', props)
   return (
     <sidebar>
       <img src="juke.svg" className="logo" />
@@ -24,6 +26,8 @@ const Sidebar = (props) => {
             <span className="glyphicon glyphicon-plus"></span> PLAYLIST
           </Link>
         </h4>
+        <hr  />
+          <PlayLists playlists={list}/>
       </section>
     </sidebar>
   );
